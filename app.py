@@ -33,6 +33,11 @@ app.register_blueprint(androidbp)
 app.register_blueprint(filtersbp)
 
 
+@app.route("/")
+def welcome():
+    return jsonify({"message": "Welcome to our images api "})
+
+
 @app.route("/images", methods=["POST", "GET"])  # type: ignore
 def images():
     if request.method == "POST":
