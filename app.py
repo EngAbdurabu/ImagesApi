@@ -5,7 +5,7 @@ from filters import bp as filtersbp
 from helpers import *
 import boto3, botocore
 from dotenv import load_dotenv
-
+from flask_restx import Api, Resource, fields
 
 # get value from .env
 load_dotenv()
@@ -16,6 +16,12 @@ ALLOWED_EXTENSION = ["png", "jpg", "jpeg"]
 DOWNLOAD_FOLDER = "downloads/"
 
 app = Flask(__name__)
+api = Api(
+    app,
+    version="1.0",
+    title="Image Processing API",
+    description="API for uploading and resizing images",
+)
 app.secret_key = os.getenv("app_secret_key")
 
 app.config["S3_BUCKET"] = os.getenv("bucket")
